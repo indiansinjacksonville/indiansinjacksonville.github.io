@@ -6,6 +6,7 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body>
     <nav role='navigation' class="main-nav" id="main-nav">
@@ -50,12 +51,12 @@
 
 
     <div class="s003">
-     <form>
+      <form>
         <img  src="images/logo1.png"/ class="center">
-
         <div class="inner-form">
           <div class="input-field second-wrap">
-            <input id="search" type="text" placeholder="Search our service directory here!" name="search" />
+
+            <input id="search" type="text" onkeyup="myFunction()" placeholder="Search our service directory here!" name="search" />
           </div>
           <div class="input-field third-wrap">
             <button class="btn-search" type="button">
@@ -65,18 +66,52 @@
             </button>
           </div>
         </div>
-<table id="example" class="display" width="100%"></table>
+        <table id="jsonTable">
+          <tr class="header">
+            <th>Name</th>
+            <th>Image</th>
+            <th>Country</th>
+          </tr>
+        </table>
       </form>
-
     </div>
-  <!--  <script src="js/extention/choices.js"></script>
     <script>
-      const choices = new Choices('[data-trigger]',
-      {
-        searchEnabled: false,
-        itemSelectText: '',
+      function myFunction() {
+        // Declare variables 
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("jsonTable");
+        tr = table.getElementsByTagName("tr");
+      
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          } 
+        }
+      }
+    </script>
+    <script>
+    $(document).ready(function(){
+      $.getJSON("data.json", function(data){
+        var user_data = '';
+        $.each(data, function(key, value){
+          user_data += '<tr>';
+          user_data += '<td>'+value.name+'</td>';
+          user_data += '<td> <img src="'+value.image+'"></td>';
+          user_data += '<td>'+value.location+'</td>';
+          user_data += '</tr>';
+        });
+        $('#jsonTable').append(user_data);
       });
-    </script>-->
-
+    });
+    </script>
   </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
