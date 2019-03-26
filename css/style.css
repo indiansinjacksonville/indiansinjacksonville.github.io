@@ -1527,9 +1527,9 @@ img {
     max-height: 100%;
 }
 .portrait {
-    height: 250px;
+    height: 100%;
     display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;;
+  width: 60%;;
 }
