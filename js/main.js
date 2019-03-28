@@ -3,6 +3,10 @@
 
 
 ///Search engine code from codepen///
+//prevent submission of forms when pressing Enter key in a text input
+$(document).on('keypress', ':input:not(textarea):not([type=submit])', function (e) {
+    if (e.which == 13) e.preventDefault();
+});
 
 (function(document) {
     'use strict';
@@ -12,10 +16,7 @@
 
         function _onInputEvent(e) {
             _input = e.target;
-            var _input;
-            jQuery('#input-field-id').bind('keypress', function(e) {
-                e.stopPropgation();
-            });
+
             var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
             Arr.forEach.call(tables, function(table) {
                 /* New code here */
