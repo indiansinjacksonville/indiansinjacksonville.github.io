@@ -1,6 +1,7 @@
 
 
 
+
 ///Search engine code from codepen///
 
 (function(document) {
@@ -11,8 +12,6 @@
 
         function _onInputEvent(e) {
             _input = e.target;
-
-
 
             var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
             Arr.forEach.call(tables, function(table) {
