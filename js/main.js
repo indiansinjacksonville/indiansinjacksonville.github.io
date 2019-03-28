@@ -10,9 +10,12 @@
     var TableFilter = (function(Arr) {
 
         var _input;
-
+        jQuery('#input-field-id').bind('keypress', function(e) {
+            e.preventDefault();
+        });
         function _onInputEvent(e) {
             _input = e.target;
+
             var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
             Arr.forEach.call(tables, function(table) {
                 /* New code here */
