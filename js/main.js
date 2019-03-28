@@ -1,12 +1,15 @@
 
-
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
 
 
 ///Search engine code from codepen///
-//prevent submission of forms when pressing Enter key in a text input
-$(document).on('keypress', ':input:not(textarea):not([type=submit])', function (e) {
-    if (e.which == 13) e.preventDefault();
-});
 
 (function(document) {
     'use strict';
@@ -16,6 +19,8 @@ $(document).on('keypress', ':input:not(textarea):not([type=submit])', function (
 
         function _onInputEvent(e) {
             _input = e.target;
+
+
 
             var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
             Arr.forEach.call(tables, function(table) {
